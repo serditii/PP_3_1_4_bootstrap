@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+</head>
+<body>
+<header class="p-1 text-bg-dark">
+    <div class="container-fluid">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <ul class="nav col-12 col-lg-auto me-lg-auto  justify-content-center mb-md-0">
+                <li class="mt-2"><a th:text="${user.email}">email</a></li>
+                <li><a href="#" class="nav-link px-2 text-white">with roles:</a></li>
+
+                <li class="mt-2">
+                    <a th:each="role : ${user.roles}">
+                        <a th:text="${role.role}">name</a>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav px-3">
+                <li class="nav-item text-nowrap"><a class="nav-link" href="/logout">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li class="nav-item">
+                    <a href="/admin" class="nav-link ">Admin</a>
+                </li>
+                <li>
+                    <a href="#" class="nav-link active" aria-current="page">User</a>
+                </li>
+            </ul>
+        </div>
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+            <h2>User information-page</h2>
+
+            <div class="border ">
+                <div class=" mt-2 ms-3">
+                    <h6>About user</h6>
+                </div>
+            </div>
+            <div class="table-responsive small">
+                <table class="table table-striped table-sm border">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>LastName</th>
+                        <th>Age</th>
+                        <th>Email</th>
+                        <th>Roles</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <p th:text="${user.id}"  class=" mt-2">id
+                        </td>
+
+                        <td>
+                            <p th:text="${user.name}" class=" mt-2">name
+                        </td>
+
+                        <td>
+                            <p th:text="${user.lastName}" class=" mt-2">lastName
+                        </td>
+
+                        <td>
+                            <p th:text="${user.age}" class=" mt-2">age
+                        </td>
+
+                        <td>
+                            <p th:text="${user.email}" class=" mt-2">email
+                        </td>
+
+                        <td>
+                            <ul class="nav col-12 col-lg-auto me-lg-auto   mb-md-0">
+                                <li class="mt-2 ">
+                                    <a th:each="role : ${user.roles}">
+                                        <a th:text="${role.role}">name</a>
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"
+        integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS"
+        crossorigin="anonymous"></script>
+</body>
+</html>
+

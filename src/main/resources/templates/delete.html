@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Show</title>
+
+    <style type="text/css">
+        TABLE {
+            border: 1px double #000;
+        }
+
+        TD {
+            border: 1px double #000;
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            text-align: center;
+        }
+
+        TH {
+            text-align: left;
+            border: 1px double #000;
+            padding-left: 15px;
+            padding-right: 15px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <th>ID</th>
+        <td><p th:text="${user.getId()}">VALUE</p></td>
+    <tr>
+        <th>Name</th>
+        <td><p th:text="${user.getName()}">VALUE</p></td>
+    <tr>
+        <th>LastName</th>
+        <td><p th:text="${user.getLastName()}">VALUE</p></td>
+    <tr>
+        <th>Age</th>
+        <td><p th:text="${user.getAge()}">VALUE</p></td>
+    <tr>
+        <th>Email</th>
+        <td><p th:text="${user.getEmail()}">VALUE</p></td>
+
+</table>
+
+<form th:method="delete" th:action="@{/users/{id}(id=${user.getId()})}">
+    <input type="submit" value="Delete"/>
+</form>
+
+<form th:action="@{/close}">
+    <input type="submit" value="Close"/>
+</form>
+
+</body>
+</html>
