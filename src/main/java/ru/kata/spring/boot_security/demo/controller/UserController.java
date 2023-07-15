@@ -18,40 +18,19 @@ import ru.kata.spring.boot_security.demo.util.UserValidator;
 
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping
 public class UserController {
 
     private final UserService userService;
-
     private final UserValidator userValidator;
 
     public UserController(UserService userServise, UserValidator userValidator) {
         this.userService = userServise;
         this.userValidator = userValidator;
-    }
-
-    @GetMapping("/admin")
-    public String adminPage(ModelMap model, Principal principal) {
-        model.addAttribute("user1", userService.
-                showUser(userService.findByUsername(principal.getName()).getId()));
-        List<User> list = userService.getListUsers();
-        model.addAttribute("users", list);
-        return "admin";
-    }
-
-    @GetMapping("/logout")
-    public String logout() {
-        return "redirect:/logout";
-    }
-
-    @GetMapping("/close")
-    public String close() {
-        return "redirect:/users";
     }
 
     @GetMapping("/user")
@@ -66,16 +45,6 @@ public class UserController {
         model.addAttribute("user", userService.
                 showUser(userService.findByUsername(principal.getName()).getId()));
         return "user1";
-    }
-
-    @GetMapping
-    public String printWelcome(ModelMap model) {
-        List<String> messages = new ArrayList<>();
-        messages.add("Hello!");
-        messages.add("I'm Spring MVC application");
-        messages.add("5.2.0 version by sep'19 ");
-        model.addAttribute("messages", messages);
-        return "index";
     }
 
     @GetMapping("/users")
@@ -133,9 +102,6 @@ public class UserController {
         if (user.getRole().equals("ROLE_ADMIN")) {
             user.setRoles(Collections.singleton(new Role(2)));
         } else user.setRoles(Collections.singleton(new Role(1)));
-        if (user.getPassword() == null) {
-            user.setPassword(userService.showUser(user.getId()).getPassword());
-        }
         userService.updateUser(user);
         return "redirect:/admin";
     }
